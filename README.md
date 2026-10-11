@@ -1,0 +1,2 @@
+# Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers
+DrishtiDrive AI is an AI-powered driver drowsiness detection system that uses computer vision to monitor eye closure, facial features, and head movements. It provides three-stage alerts to improve road safety. Available in two variants: software-only and Raspberry Pi-based hardware.  A Watchful Eye on Every Journey.
