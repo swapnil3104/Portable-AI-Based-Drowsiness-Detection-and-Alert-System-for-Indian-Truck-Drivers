@@ -1,0 +1,45 @@
+{
+  "id": "TASK-31",
+  "title": "Model comparison benchmark runner and CSV reporting tool",
+  "category": "functional",
+  "description": "Implement training/benchmark_models.py to evaluate trained or candidate CNN models against held-out test splits, measuring accuracy, precision, recall, F1, model size (MB), and CPU inference latency (ms/image), outputting results to reports/model_comparison.csv (PRD 4A & 11).",
+  "acceptanceCriteria": [
+    "Loads held-out test datasets or mock evaluation sets with open/closed labels",
+    "Evaluates candidate architectures: Custom Compact CNN, MobileNetV2, EfficientNetB0, ResNet50, Depthwise CNN",
+    "Generates confusion matrices and classification reports",
+    "Writes measured metrics to reports/model_comparison.csv without hardcoding fake metrics (PRD 4A)",
+    "Unit tests verify benchmark calculations and report formatting"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create benchmark script in training/benchmark_models.py",
+      "details": "Implement CLI script taking --data-dir and --models-dir, iterating through candidate models.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement metrics calculation engine",
+      "details": "Use scikit-learn metrics to compute accuracy, precision, recall (prioritizing closed recall), F1-score, and confusion matrix.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement latency benchmark loop",
+      "details": "Measure per-image inference latency across 100 warm-up and timed runs on CPU, calculating mean and standard deviation.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write output to CSV and test with dummy models",
+      "details": "Create tests/test_benchmark.py evaluating two small test models and verifying CSV columns in reports/model_comparison.csv.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-7"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Adhere to PRD 4A: never report placeholder metrics as measured values.",
+    "Support graceful skipping with documented reason if heavy models (e.g. ResNet50) exceed RAM."
+  ]
+}

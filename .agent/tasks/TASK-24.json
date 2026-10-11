@@ -1,0 +1,45 @@
+{
+  "id": "TASK-24",
+  "title": "Eye detection overlay toggle and bounding box rendering",
+  "category": "ui-ux",
+  "description": "Implement web/src/components/DetectionOverlay.jsx to draw face and eye bounding boxes with closed probability labels (green for open, red for closed) over the live video canvas, controlled by a 'Show Facial Landmarks / Overlays' toggle.",
+  "acceptanceCriteria": [
+    "Renders detected eye bounding boxes with label showing 'Open X.XX' or 'Closed X.XX'",
+    "Boxes are styled green when open and red when closed",
+    "Overlay visibility responds dynamically to the 'Show Overlays' toggle switch without restarting camera",
+    "Handles zero detections cleanly without rendering ghost boxes",
+    "Verify in browser using playwright"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create DetectionOverlay component",
+      "details": "Create web/src/components/DetectionOverlay.jsx positioning an absolute SVG or HTML5 canvas layer directly on top of the video feed.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement box coordinate scaling and drawing",
+      "details": "Scale relative bounding box coordinates (x, y, w, h) to video canvas dimensions and render SVG rects with text tags.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Connect overlay toggle state",
+      "details": "Hide overlay layer when showOverlays is false to allow uncluttered monitoring view (PRD FR-02).",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Verify in browser with Playwright",
+      "details": "Run Playwright test toggling overlay checkbox and verifying box elements exist; take screenshot to .agent/screenshots/TASK-24-1.png.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-23"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Use SVG vector overlays to avoid blurry canvas scaling.",
+    "Keep overlay lightweight to preserve 30 FPS render speed."
+  ]
+}

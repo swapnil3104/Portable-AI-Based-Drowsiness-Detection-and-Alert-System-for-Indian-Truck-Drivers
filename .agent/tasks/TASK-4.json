@@ -1,0 +1,52 @@
+{
+  "id": "TASK-4",
+  "title": "OpenCV camera service with device enumeration and lifecycle",
+  "category": "functional",
+  "description": "Implement camera/camera_service.py to discover available camera devices, capture frames in a background thread, maintain bounded queues, and release hardware resources cleanly on stop/shutdown.",
+  "acceptanceCriteria": [
+    "Discovers available camera indices on Windows/Linux",
+    "Starts and stops camera capture on a background worker thread",
+    "Provides latest frame safely to consumers without blocking camera capture",
+    "Properly releases cv2.VideoCapture on stop or exception to prevent device locks",
+    "Supports synthetic/test frame generator mode when camera is unavailable",
+    "Unit tests verify lifecycle transitions and safe resource release"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create CameraService skeleton and thread worker",
+      "details": "Create camera/camera_service.py with CameraService class managing a background threading.Thread for cv2.VideoCapture loop.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement device discovery",
+      "details": "Implement list_available_cameras() testing device indices (0..3) with fast timeouts, returning list of valid device indices.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement start, stop, read_frame methods",
+      "details": "Implement thread-safe frame access with bounded queue / latest frame reference; implement start(camera_index) and stop() with cv2.VideoCapture.release().",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Add fallback synthetic frame mode",
+      "details": "When use_mock=True or when no camera is present, generate realistic test frames with simulated faces for automated test runs.",
+      "pass": false
+    },
+    {
+      "step": 5,
+      "description": "Write unit tests for CameraService",
+      "details": "Create tests/test_camera_service.py covering initialization, start, stop, mock capture, and clean release.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-1", "TASK-2"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Run inference outside camera capture thread to avoid dropping camera frames.",
+    "Handle cv2.VideoCapture releasing thoroughly in try/finally blocks."
+  ]
+}

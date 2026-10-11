@@ -1,0 +1,44 @@
+{
+  "id": "TASK-14",
+  "title": "FastAPI application setup with CORS, health check, and graceful shutdown",
+  "category": "api-endpoint",
+  "description": "Implement app.py creating a FastAPI application configured with CORS middleware, lifespan lifecycle for camera/service cleanup, and health status endpoint GET /api/health.",
+  "acceptanceCriteria": [
+    "FastAPI app initializes cleanly with configured CORS for localhost development",
+    "GET /api/health returns 200 with status 'ok', version, and subsystem health indicators",
+    "Application lifecycle cleanly closes background services, camera captures, and log streams on shutdown",
+    "Unit tests verify health endpoint response and application startup/shutdown events"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create FastAPI app skeleton in app.py",
+      "details": "Create app.py instantiating FastAPI app with title 'DrishtiDrive AI', version '1.2.0', and CORSMiddleware.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement lifespan context manager",
+      "details": "Implement lifespan async context manager to initialize CameraService, StateMachine, AlertManager, EventLogger on startup, and gracefully stop them on shutdown.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Add GET /api/health route",
+      "details": "Return JSON containing {'status': 'ok', 'app': 'DrishtiDrive AI', 'version': '1.2.0', 'uptime': seconds, 'camera_status': camera_service.status}.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write API tests using TestClient",
+      "details": "Create tests/test_api_health.py using fastapi.testclient.TestClient to verify /api/health returns 200 and expected JSON structure.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-2", "TASK-3", "TASK-4"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Keep app.py focused as the API router and lifecycle coordinator under 250 lines.",
+    "Ensure graceful shutdown prevents camera device locking."
+  ]
+}

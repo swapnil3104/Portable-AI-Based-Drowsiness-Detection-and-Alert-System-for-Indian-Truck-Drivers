@@ -1,0 +1,44 @@
+{
+  "id": "TASK-17",
+  "title": "Event log API endpoints for history retrieval, export, and clearance",
+  "category": "api-endpoint",
+  "description": "Implement api/logs_router.py with GET /api/logs, GET /api/logs/export, and DELETE /api/logs to retrieve timestamped application events, export logs to JSON/CSV, and clear entries with confirmation.",
+  "acceptanceCriteria": [
+    "GET /api/logs returns array of recent log entries with pagination/limit support",
+    "GET /api/logs/export returns downloadable JSON or CSV file",
+    "DELETE /api/logs clears historical log entries and returns success status",
+    "Unit tests verify retrieval, export format, and deletion"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create logs router in api/logs_router.py",
+      "details": "Create APIRouter(prefix='/api/logs', tags=['logs']) with query parameters for limit, offset, and severity filter.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement GET /api/logs",
+      "details": "Fetch entries from EventLogger and return JSON list of events sorted newest first.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement GET /api/logs/export and DELETE /api/logs",
+      "details": "Provide StreamingResponse / FileResponse for CSV/JSON export; implement DELETE endpoint calling EventLogger.clear_events().",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write API unit tests",
+      "details": "Create tests/test_api_logs.py testing log query, filtering, CSV formatting, and clear route with TestClient.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-14", "TASK-3"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Ensure DELETE requires explicit confirmation payload or query parameter.",
+    "Do not expose personal data or raw image streams in logs."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "TASK-27",
+  "title": "Camera controls panel with device dropdown and sensitivity slider",
+  "category": "ui-ux",
+  "description": "Implement web/src/components/CameraControls.jsx containing camera source dropdown selector, detection sensitivity slider with 'More Sensitive' and 'Less Sensitive' labels, and overlay toggle switch.",
+  "acceptanceCriteria": [
+    "Dropdown populates with available camera devices from GET /api/camera/devices",
+    "Changing selected camera invokes POST /api/camera/start with new device index",
+    "Sensitivity slider allows adjustments (0.5 to 1.5) with clear labels 'Less Sensitive' and 'More Sensitive'",
+    "Overlay toggle controls visual boxes without stopping stream",
+    "All form controls have accessible labels and keyboard focus states (PRD 6.6)",
+    "Verify in browser using playwright"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create CameraControls component",
+      "details": "Create web/src/components/CameraControls.jsx with device selector, sensitivity slider, and toggle controls.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement API integration for device change and settings",
+      "details": "Fetch devices on mount, handle camera switch, and dispatch PUT /api/settings when sensitivity changes (debounced by 300ms).",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Add CSS styling in web/src/components/CameraControls.css",
+      "details": "Style form controls with custom sliders, clean focus outlines, and accessible field labels.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Verify in browser with Playwright",
+      "details": "Run Playwright test verifying dropdown and slider change events; capture screenshot to .agent/screenshots/TASK-27-1.png.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-20", "TASK-15", "TASK-16"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Debounce slider changes to avoid flooding the backend settings endpoint.",
+    "Handle camera busy or permission denied errors with an inline alert banner."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "TASK-32",
+  "title": "Synthetic video test harness for simulated drowsiness and fault scenarios",
+  "category": "functional",
+  "description": "Implement tests/synthetic_feed_harness.py to simulate camera feeds with deterministic frame sequences (normal blinking, prolonged eye closure, head turn/occlusion, and camera disconnection) to verify end-to-end alert escalation deterministically (PRD 11).",
+  "acceptanceCriteria": [
+    "Generates synthetic image sequences for: normal blinking, 2s eye closure (Stage 1), 4s eye closure (Stage 2), 6s eye closure (Stage 3), and face occlusion",
+    "Pumps synthetic frames into CameraService and verifies AlertManager reaches corresponding stages",
+    "Asserts that ordinary short blinks (100-300ms) do NOT trigger critical alerts (PRD 10)",
+    "Verifies transitions to Monitoring Unavailable upon occlusion without false alerts",
+    "Automated test passes deterministically without a real webcam attached"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create synthetic frame generator in tests/synthetic_feed_harness.py",
+      "details": "Generate test frames with simulated faces with open eyes vs closed eye slits drawn using OpenCV primitives.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Build automated sequence driver",
+      "details": "Create test runner feeding sequences at 30 FPS into CameraService/StateMachine pipeline and recording stage transitions.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Write automated test cases in tests/test_drowsiness_pipeline.py",
+      "details": "Test case 1: normal blinking -> state stays NORMAL. Test case 2: 1.5s closure -> STAGE_1. Test case 3: 3.5s closure -> STAGE_2. Test case 4: 5.5s closure -> STAGE_3. Test case 5: no face -> UNAVAILABLE.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Verify test execution with pytest",
+      "details": "Run pytest tests/test_drowsiness_pipeline.py and ensure 100% pass rate in headless environments.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-4", "TASK-6", "TASK-10", "TASK-11"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Critical acceptance test for PRD 10: proving alerts trigger deterministically and short blinks are rejected.",
+    "Enables reproducible CI/CD testing without hardware webcams."
+  ]
+}

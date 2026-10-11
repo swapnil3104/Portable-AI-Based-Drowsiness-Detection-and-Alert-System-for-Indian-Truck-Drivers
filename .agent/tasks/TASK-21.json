@@ -1,0 +1,45 @@
+{
+  "id": "TASK-21",
+  "title": "Top navigation header with branding and system status badge",
+  "category": "ui-ux",
+  "description": "Implement web/src/components/Header.jsx featuring the product title 'DrishtiDrive AI', tagline 'A Watchful Eye on Every Journey', minimalist logo SVG, navigation items (Dashboard, Analytics, Settings, Help), and real-time system state badge (Online / Initializing / Fault).",
+  "acceptanceCriteria": [
+    "Displays product name 'DrishtiDrive AI' and tagline prominently",
+    "Renders an eye/road inspired minimalist SVG icon",
+    "Displays live system status indicator badge (green for Online, blue for Initializing, red for Fault)",
+    "Compact top bar layout without requiring a heavy left navigation sidebar (PRD 6.2)",
+    "Verify in browser using playwright"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create Header component in web/src/components/Header.jsx",
+      "details": "Implement Header component with brand container, title, tagline, nav links, and status badge.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Add CSS styling for Header in web/src/components/Header.css",
+      "details": "Style header with clean white background, subtle border-bottom, slate text, flexbox alignment, and responsive wrapping for mobile.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Connect system status prop to live state",
+      "details": "Accept systemStatus ('online', 'initializing', 'fault') and render animated pulsing indicator dot.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Verify in browser with Playwright",
+      "details": "Run Playwright test to verify header text and badge appearance; capture screenshot to .agent/screenshots/TASK-21-1.png.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-20"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Keep header file concise and modular under 150 lines.",
+    "Do not use intrusive animations or excessive glows."
+  ]
+}

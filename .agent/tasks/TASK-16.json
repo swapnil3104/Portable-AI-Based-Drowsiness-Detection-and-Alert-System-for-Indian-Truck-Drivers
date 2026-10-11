@@ -1,0 +1,44 @@
+{
+  "id": "TASK-16",
+  "title": "Configuration API endpoints to read, validate, and update settings",
+  "category": "api-endpoint",
+  "description": "Implement api/settings_router.py with GET /api/settings and PUT /api/settings to inspect and modify sensitivity, closure time thresholds, audio toggle, and UI overlay preferences at runtime.",
+  "acceptanceCriteria": [
+    "GET /api/settings returns current configuration object",
+    "PUT /api/settings accepts partial or full updates, validates values against safety limits, and updates live services",
+    "Returns 422 with validation errors if parameters fall outside acceptable bounds",
+    "Unit tests verify reading, updating, and validation failure responses"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create settings router in api/settings_router.py",
+      "details": "Create APIRouter(prefix='/api/settings', tags=['settings']) and define SettingsUpdateRequest schema.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement GET /api/settings",
+      "details": "Return current settings from SettingsService as JSON.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement PUT /api/settings",
+      "details": "Validate updated values, apply changes to active StateMachine and AlertManager instances, persist to local settings file, and log settings update event.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write API unit tests",
+      "details": "Create tests/test_api_settings.py verifying successful updates and validation rejection on invalid thresholds.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-14", "TASK-2"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Apply settings updates dynamically without requiring backend server restart.",
+    "Validate that closure_seconds > 0.5s to prevent immediate false alarms."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "TASK-8",
+  "title": "Dual-eye consensus and confidence scoring",
+  "category": "functional",
+  "description": "Implement detection/eye_consensus.py to evaluate probabilities from both detected eyes, determine frame-level eye closure state, apply sensitivity weighting, and compute detection confidence.",
+  "acceptanceCriteria": [
+    "Evaluates probabilities from left and right eyes using conservative consensus logic",
+    "Marks eyes as closed only when both detected eyes exceed threshold (or single eye if only one is clearly detected)",
+    "Calculates confidence score based on eye detection clarity and crop quality",
+    "Marks state as unavailable if no eyes are detected or detection confidence is too low",
+    "Unit tests verify consensus decisions across various probability pairs"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create EyeConsensus evaluator",
+      "details": "Create detection/eye_consensus.py with FrameEyeState dataclass and EyeConsensusEvaluator class.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement consensus logic",
+      "details": "Implement evaluate(probabilities, threshold=0.75) computing combined_closed_prob, is_closed boolean, and confidence in [0.0, 1.0].",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Integrate sensitivity adjustment",
+      "details": "Allow sensitivity factor (0.5 to 1.5) to modulate effective threshold.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for consensus evaluator",
+      "details": "Create tests/test_eye_consensus.py testing cases: both closed, both open, one open one closed, no eyes detected.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-6", "TASK-7"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Conservative consensus prevents false alarms when a driver glances sideways or winks.",
+    "Unavailable state must be returned when no eyes are found."
+  ]
+}

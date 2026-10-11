@@ -1,0 +1,247 @@
+[
+  {
+    "id": "TASK-1",
+    "title": "Verify project prerequisites and access",
+    "category": "setup",
+    "specFilePath": ".agent/tasks/TASK-1.json",
+    "passes": true
+  },
+  {
+    "id": "TASK-2",
+    "title": "Project configuration schema and default settings",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-2.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-3",
+    "title": "Local event logger with structured JSON logging and export",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-3.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-4",
+    "title": "OpenCV camera service with device enumeration and lifecycle",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-4.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-5",
+    "title": "Camera health monitor with fault detection and recovery logic",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-5.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-6",
+    "title": "Eye crop extraction pipeline with OpenCV Haar cascades",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-6.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-7",
+    "title": "CNN eye-state classifier inference wrapper",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-7.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-8",
+    "title": "Dual-eye consensus and confidence scoring",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-8.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-9",
+    "title": "Rolling window blink detector and blink rate calculator",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-9.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-10",
+    "title": "Temporal drowsiness state machine with closure thresholds and smoothing",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-10.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-11",
+    "title": "3-stage alert transition manager with cooldown logic",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-11.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-12",
+    "title": "Audio alert service with 3-stage alert sounds and voice prompts",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-12.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-13",
+    "title": "Alert acknowledgment and safe snooze timer management",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-13.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-14",
+    "title": "FastAPI application setup with CORS, health check, and graceful shutdown",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-14.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-15",
+    "title": "Camera control API endpoints for start, stop, retry, and listing",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-15.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-16",
+    "title": "Configuration API endpoints to read, validate, and update settings",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-16.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-17",
+    "title": "Event log API endpoints for history retrieval, export, and clearance",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-17.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-18",
+    "title": "WebSocket endpoint for low-latency video streaming and telemetry",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-18.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-19",
+    "title": "System status and alert dispatch API with preview trigger",
+    "category": "api-endpoint",
+    "specFilePath": ".agent/tasks/TASK-19.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-20",
+    "title": "Vite React frontend scaffold with vanilla CSS design tokens",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-20.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-21",
+    "title": "Top navigation header with branding and system status badge",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-21.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-22",
+    "title": "WebSocket client hook for video feed and telemetry state synchronization",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-22.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-23",
+    "title": "Live driver monitoring card with video canvas and controls",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-23.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-24",
+    "title": "Eye detection overlay toggle and bounding box rendering",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-24.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-25",
+    "title": "Driver status badge and risk estimate panel with disclaimer",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-25.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-26",
+    "title": "Telemetry metrics panel with eye openness, blink rate, and FPS",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-26.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-27",
+    "title": "Camera controls panel with device dropdown and sensitivity slider",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-27.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-28",
+    "title": "Alert system card with 3-stage indicators and preview buttons",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-28.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-29",
+    "title": "Event log card with chronological entries, clear confirmation, and export",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-29.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-30",
+    "title": "Responsive layout refinement and accessibility focus states",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-30.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-31",
+    "title": "Model comparison benchmark runner and CSV reporting tool",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-31.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-32",
+    "title": "Synthetic video test harness for simulated drowsiness and fault scenarios",
+    "category": "functional",
+    "specFilePath": ".agent/tasks/TASK-32.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-33",
+    "title": "End-to-end Playwright test suite for complete dashboard workflows",
+    "category": "ui-ux",
+    "specFilePath": ".agent/tasks/TASK-33.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-34",
+    "title": "Offline resilience and privacy verification check",
+    "category": "security",
+    "specFilePath": ".agent/tasks/TASK-34.json",
+    "passes": false
+  },
+  {
+    "id": "TASK-35",
+    "title": "Documentation and developer runbook update",
+    "category": "documentation",
+    "specFilePath": ".agent/tasks/TASK-35.json",
+    "passes": false
+  }
+]

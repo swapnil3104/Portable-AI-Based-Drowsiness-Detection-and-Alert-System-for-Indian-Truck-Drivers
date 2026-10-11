@@ -1,0 +1,45 @@
+{
+  "id": "TASK-18",
+  "title": "WebSocket endpoint for low-latency video streaming and telemetry",
+  "category": "api-endpoint",
+  "description": "Implement api/ws_stream.py providing WebSocket endpoint at /ws/stream to broadcast encoded JPEG video frames along with real-time detection telemetry (eye state, closed probabilities, blink rate, alert stage, FPS).",
+  "acceptanceCriteria": [
+    "WebSocket endpoint accepts connection and handles graceful disconnects",
+    "Transmits JSON payloads containing base64 JPEG or binary image alongside structured telemetry object",
+    "Operates at target 15-30 FPS without accumulating frame lag or leaking memory",
+    "Sends monitoring unavailable message when camera is inactive or face is occluded",
+    "Unit tests verify WebSocket handshake, message structure, and clean client disconnect"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create WebSocket router in api/ws_stream.py",
+      "details": "Create websocket_endpoint(websocket: WebSocket) managing connection lifecycle and active client sets.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement streaming loop with bounded frame rate",
+      "details": "Fetch latest frame and telemetry from VisionEngine/CameraService, encode frame to JPEG (quality ~70 for low latency), and send JSON message with image data and telemetry.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Handle client disconnects and exceptions cleanly",
+      "details": "Catch WebSocketDisconnect and ensure no lingering thread or resource leaks.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write WebSocket test using TestClient",
+      "details": "Create tests/test_ws_stream.py verifying WebSocket connection, receipt of telemetry message structure, and graceful closure.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-14", "TASK-4", "TASK-8", "TASK-10"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Drop older frames when WebSocket connection backpressure occurs to maintain real-time latency.",
+    "Keep payload size lean (bounded JPEG resolution e.g. 640x480 or 480x360)."
+  ]
+}

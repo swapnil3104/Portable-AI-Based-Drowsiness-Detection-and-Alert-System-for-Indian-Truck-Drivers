@@ -1,0 +1,44 @@
+{
+  "id": "TASK-5",
+  "title": "Camera health monitor with fault detection and recovery logic",
+  "category": "functional",
+  "description": "Implement camera/camera_health.py to monitor camera read latency, detect frozen feeds, handle camera disconnections, and manage automatic recovery and status reporting.",
+  "acceptanceCriteria": [
+    "Detects frame read timeouts (e.g. no new frame for > 2.0s) and flags Camera Fault state",
+    "Emits camera health status events: Ready, Active, Warning, Fault, Disconnected",
+    "Implements retry and auto-reconnect backoff mechanism",
+    "Unit tests verify fault detection upon missed frames and successful recovery upon reconnection"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create CameraHealthMonitor class",
+      "details": "Create camera/camera_health.py tracking last_frame_time, frame_count, fps, and connection state.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement timeout and error detection",
+      "details": "Implement check_health() method called on each frame or timer, detecting read failures and setting status to CAMERA_FAULT.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement reconnect policy",
+      "details": "Implement attempt_recovery() with exponential backoff and retry counter limits.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for camera health monitor",
+      "details": "Create tests/test_camera_health.py testing active health, simulated timeout transition to fault, and recovery callback.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-4", "TASK-3"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Log camera health state transitions through EventLogger.",
+    "Keep health monitor decoupled from UI logic."
+  ]
+}

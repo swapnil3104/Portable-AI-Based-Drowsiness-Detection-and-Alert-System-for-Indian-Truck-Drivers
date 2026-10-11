@@ -1,0 +1,44 @@
+{
+  "id": "TASK-1",
+  "title": "Verify project prerequisites and access",
+  "category": "setup",
+  "description": "Verify that Python virtual environment, OpenCV, TensorFlow/Keras dependencies, Node.js tooling, environment variables in .env.local, and camera device permissions are accessible before implementation begins.",
+  "acceptanceCriteria": [
+    ".env.local exists with placeholder entries for required environment variables without committing secrets",
+    "Python environment has required libraries installed (opencv-python, tensorflow/keras, numpy)",
+    "Node.js package dependencies in lib/ are verified and build scripts work",
+    "Camera access check can be executed safely or reports simulated fallback without crashing"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Read prerequisite requirements from the PRD",
+      "details": "Open .agent/prd/PRD.md and verify Python dependencies in requirements.txt and Node dependencies in lib/package.json.",
+      "pass": true
+    },
+    {
+      "step": 2,
+      "description": "Verify .env.local placeholder configuration",
+      "details": "Confirm .env.local exists with APP_ENV, HOST, PORT, DEFAULT_CAMERA_INDEX, and LOG_LEVEL.",
+      "pass": true
+    },
+    {
+      "step": 3,
+      "description": "Verify Python dependency importability",
+      "details": "Run a test script importing cv2, numpy, and check if tensorflow or onnxruntime are present.",
+      "pass": true
+    },
+    {
+      "step": 4,
+      "description": "Verify Node development dependencies",
+      "details": "Confirm npm dependencies in lib/ are installed and playwright config is valid.",
+      "pass": true
+    }
+  ],
+  "dependencies": [],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Ensure secrets stay local and are never logged or committed.",
+    "If physical webcam is not attached, provide a fallback synthetic frame generator for testing."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "TASK-6",
+  "title": "Eye crop extraction pipeline with OpenCV Haar cascades",
+  "category": "functional",
+  "description": "Implement detection/eye_extractor.py to detect face and eye regions using OpenCV Haar cascades, extract normalized eye crops (resize, color space conversion, float scaling), and report eye bounding box metadata.",
+  "acceptanceCriteria": [
+    "Loads OpenCV Haar cascade classifiers for face and eyes safely",
+    "Extracts left and right eye bounding boxes from input frame",
+    "Normalizes crops into specified CNN target dimension (e.g. 96x96, RGB float32)",
+    "Gracefully handles frames with zero or partial eyes detected, marking detection as unavailable",
+    "Unit tests verify crop extraction dimensions and edge cases on sample test images"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create EyeExtractor class",
+      "details": "Create detection/eye_extractor.py with EyeExtractor class loading haarcascade_frontalface_default.xml and haarcascade_eye_tree_eyeglasses.xml.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement eye detection and region filtering",
+      "details": "Implement detect_eyes(frame) searching face ROI first, then detecting upper-half eye regions to minimize false detections (e.g., nostrils or mouth).",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement crop normalization",
+      "details": "Implement prepare_crops(crops, target_size=(96,96)) converting BGR to RGB, resizing with cv2.INTER_AREA, and returning float32 arrays.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for EyeExtractor",
+      "details": "Create tests/test_eye_extractor.py using synthetic images with drawn shapes or test frames to verify bounding boxes and array outputs.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-1", "TASK-4"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Preserve exact preprocessing between training and inference (target size 96x96, RGB channel order).",
+    "When eyes are not detected, return empty crop list rather than raising an unhandled exception."
+  ]
+}

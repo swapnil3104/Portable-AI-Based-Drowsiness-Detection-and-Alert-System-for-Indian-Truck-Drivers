@@ -1,0 +1,45 @@
+{
+  "id": "TASK-35",
+  "title": "Documentation and developer runbook update",
+  "category": "documentation",
+  "description": "Update README.md, docs/testing_plan.md, and docs/architecture.md with detailed instructions on starting backend and frontend dev servers, running model training & benchmark comparisons, interpreting alerts, and executing test suites.",
+  "acceptanceCriteria": [
+    "README.md updated with end-to-end instructions for setup, running backend & frontend, and running tests",
+    "docs/testing_plan.md documents unit tests, synthetic stream tests, and Playwright E2E tests (PRD 11)",
+    "docs/architecture.md contains module architecture diagram and data flow description",
+    "Clear instructions provided on model training and dataset preparation (MRL / Kaggle)",
+    "Includes mandatory safety limitation notice prominently"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Update project README.md",
+      "details": "Document installation steps (pip install -r requirements.txt, npm install in web/), running local servers, and keyboard shortcuts.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Create docs/testing_plan.md",
+      "details": "Detail test execution instructions for pytest and npx playwright test, explaining synthetic video harnesses.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Create docs/architecture.md",
+      "details": "Document module boundaries (camera_service, eye_extractor, model_runner, state_machine, alert_manager, web dashboard) and WebSocket data flow.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Review documentation links and commands",
+      "details": "Verify all file links, commands, and parameter flags match implemented code.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-33", "TASK-34"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Ensure documentation explicitly emphasizes prototype safety boundaries.",
+    "Keep instructions clear and beginner-friendly."
+  ]
+}

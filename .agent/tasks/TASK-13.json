@@ -1,0 +1,45 @@
+{
+  "id": "TASK-13",
+  "title": "Alert acknowledgment and safe snooze timer management",
+  "category": "functional",
+  "description": "Implement alerts/acknowledgment_manager.py allowing driver/user to acknowledge and temporarily snooze audio alerts without falsely marking the driver as alert or clearing persistent risk state.",
+  "acceptanceCriteria": [
+    "Provides acknowledge_alert() action that mutes audio for a configured snooze window (e.g. 15-30s)",
+    "Acknowledgment does NOT reset underlying risk estimate or change state to NORMAL while eyes remain closed",
+    "If severe indicators continue past snooze duration, alert audio automatically re-engages",
+    "All acknowledgment events are logged with timestamps",
+    "Unit tests verify snooze timeout and re-trigger behavior"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create AcknowledgmentManager class",
+      "details": "Create alerts/acknowledgment_manager.py maintaining is_snoozed, snooze_until_time, and max_snooze_limit.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement snooze logic and safety bounds",
+      "details": "Implement snooze(duration_seconds=20). Cap maximum snooze duration to 60s and reject excessive repeated snoozes during critical Stage 3 alert.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement can_play_audio check",
+      "details": "Implement check method verifying whether current audio is suppressed by active snooze or eligible to play.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for AcknowledgmentManager",
+      "details": "Create tests/test_acknowledgment_manager.py verifying snooze duration expiry, Stage 3 overrides, and audit logging.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-11", "TASK-12", "TASK-3"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Per PRD FR-05, acknowledgment must never trick the system into assuming the driver is awake.",
+    "Log every snooze request to prevent silent suppression."
+  ]
+}

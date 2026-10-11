@@ -1,0 +1,45 @@
+{
+  "id": "TASK-34",
+  "title": "Offline resilience and privacy verification check",
+  "category": "security",
+  "description": "Implement security and privacy verification test in tests/test_privacy_and_offline.py ensuring that the application operates with zero external network requests, does not persist raw facial images to disk, and protects driver privacy (PRD FR-10 & 11).",
+  "acceptanceCriteria": [
+    "Verifies that no outbound HTTP/HTTPS network connections are attempted during monitoring",
+    "Verifies that no raw facial images or video recordings are saved to disk by default",
+    "Verifies that event logs contain only timestamps and status event types without sensitive facial embeddings",
+    "Confirms that clearing logs permanently erases stored event records",
+    "Automated pytest test passes"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create offline inspection test in tests/test_privacy_and_offline.py",
+      "details": "Mock urllib, requests, and socket network calls to assert that core vision, state machine, and alerts make zero outbound internet requests.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Inspect file system writes during active monitoring",
+      "details": "Run 100 frames through the pipeline and inspect disk writes to confirm no image/video files (e.g. .jpg, .png, .mp4) are generated.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Verify log content privacy compliance",
+      "details": "Inspect generated log records to verify no user identifiers, biometric points, or raw facial crops are logged.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Run pytest tests/test_privacy_and_offline.py",
+      "details": "Execute pytest and verify 100% compliance with privacy acceptance criteria.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-3", "TASK-14", "TASK-32"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Strictly satisfies PRD FR-10: zero cloud upload and local privacy protection.",
+    "Verify mock sockets fail fast if an unintended external ping is triggered."
+  ]
+}

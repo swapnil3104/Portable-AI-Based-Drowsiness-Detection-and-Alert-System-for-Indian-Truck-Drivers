@@ -1,0 +1,45 @@
+{
+  "id": "TASK-25",
+  "title": "Driver status badge and risk estimate panel with disclaimer",
+  "category": "ui-ux",
+  "description": "Implement web/src/components/StatusBadge.jsx and risk estimate indicator showing the current overall status (Normal, Stage 1, Stage 2, Stage 3, Monitoring Unavailable) with clear explanation that it is an experimental estimate rather than a medically validated score.",
+  "acceptanceCriteria": [
+    "Displays active driver status banner with distinct colors: Normal (green), Stage 1 (yellow/amber), Stage 2 (orange), Stage 3 (red), Unavailable (gray)",
+    "Displays drowsiness risk progress bar (0% - 100%)",
+    "Contains visible safety disclaimer: 'DrishtiDrive is an experimental driver-assistance prototype, not a medical or certified safety device' (PRD 1.0 & 6.5)",
+    "Shows em dashes ('—') for missing values when monitoring is unavailable",
+    "Verify in browser using playwright"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create StatusBadge component",
+      "details": "Create web/src/components/StatusBadge.jsx receiving status and riskScore props.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Add risk progress bar and disclaimer note",
+      "details": "Render smooth progress bar with label 'Drowsiness Risk Estimate (Calculated)'. Render disclaimer card with tooltip or small text.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Add CSS styling in web/src/components/StatusBadge.css",
+      "details": "Style status badges with high contrast, calm restrained colors, rounded pills, and accessible font sizes.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Verify in browser with Playwright",
+      "details": "Run Playwright test verifying status badge text and disclaimer presence; capture screenshot to .agent/screenshots/TASK-25-1.png.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-20"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Never display the risk score as a certified medical measurement (PRD FR-04).",
+    "Include both text and icon for accessibility (PRD 6.9)."
+  ]
+}

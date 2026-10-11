@@ -1,0 +1,44 @@
+{
+  "id": "TASK-19",
+  "title": "System status and alert dispatch API with preview trigger",
+  "category": "api-endpoint",
+  "description": "Implement api/alerts_router.py with POST /api/alerts/preview, POST /api/alerts/acknowledge, and GET /api/alerts/status to control and query alert stages directly from the web interface.",
+  "acceptanceCriteria": [
+    "POST /api/alerts/preview accepts stage (1, 2, 3) and triggers a 3-second alert simulation",
+    "POST /api/alerts/acknowledge triggers snooze period on active alarm audio",
+    "GET /api/alerts/status returns active alert stage, snooze state, and mute configuration",
+    "Unit tests verify preview trigger and acknowledgment endpoints"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create alerts router in api/alerts_router.py",
+      "details": "Create APIRouter(prefix='/api/alerts', tags=['alerts']) with schemas for PreviewAlertRequest and AcknowledgeRequest.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement preview alert route",
+      "details": "POST /preview calls AlertManager.preview_alert(stage) and returns success with active simulated stage.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement acknowledge and status routes",
+      "details": "POST /acknowledge activates snooze via AcknowledgmentManager; GET /status returns current active alert stage and audio status.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write API unit tests",
+      "details": "Create tests/test_api_alerts.py testing preview dispatch, snooze activation, and status responses.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-14", "TASK-11", "TASK-13"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Validate that stage parameter is in [1, 2, 3].",
+    "Record all preview and acknowledgment actions into EventLogger."
+  ]
+}

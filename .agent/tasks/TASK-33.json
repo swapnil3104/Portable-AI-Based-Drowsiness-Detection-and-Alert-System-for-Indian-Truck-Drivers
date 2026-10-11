@@ -1,0 +1,53 @@
+{
+  "id": "TASK-33",
+  "title": "End-to-end Playwright test suite for complete dashboard workflows",
+  "category": "ui-ux",
+  "description": "Implement Playwright E2E tests in lib/tests/dashboard.spec.ts covering camera start/stop, sensitivity adjustments, preview alert trigger, acknowledgment, event logging, and responsive display.",
+  "acceptanceCriteria": [
+    "Tests camera start/stop button toggling state and video element display",
+    "Tests sensitivity slider adjustment and verification of persisted settings",
+    "Tests preview alert buttons for Stage 1, 2, and 3 activating stage cards",
+    "Tests acknowledge button snooze behavior",
+    "Tests log export and log clear confirmation dialog",
+    "Saves UI verification screenshots to .agent/screenshots/TASK-33-{index}.png",
+    "Verify in browser using playwright"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create Playwright test file in lib/tests/dashboard.spec.ts",
+      "details": "Write end-to-end test suite using Playwright test runner targeting http://localhost:3000.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement camera and metrics test flows",
+      "details": "Navigate to dashboard, assert header and status indicators, click Start Camera, verify telemetry updates.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement alert preview and log interactions",
+      "details": "Click Stage 2 Preview Alert button, verify Stage 2 card glows active, click Acknowledge, verify log table receives entry.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Capture test screenshots and verify clean console",
+      "details": "Capture full-page screenshot to .agent/screenshots/TASK-33-dashboard.png and assert no unhandled console errors.",
+      "pass": false
+    },
+    {
+      "step": 5,
+      "description": "Run Playwright test suite",
+      "details": "Execute npx playwright test lib/tests/dashboard.spec.ts and confirm all tests pass.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-20", "TASK-23", "TASK-27", "TASK-28", "TASK-29", "TASK-30"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Use viewport 1366x768 matching playwright.config.ts.",
+    "Handle asynchronous WebSocket mock data smoothly in tests."
+  ]
+}

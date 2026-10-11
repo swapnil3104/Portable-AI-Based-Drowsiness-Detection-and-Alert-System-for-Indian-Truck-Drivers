@@ -1,0 +1,44 @@
+{
+  "id": "TASK-2",
+  "title": "Project configuration schema and default settings",
+  "category": "functional",
+  "description": "Implement a typed configuration service and schema in config/default_settings.yaml and settings/settings_service.py to load, validate, and persist runtime settings including camera index, sensitivity, closure thresholds, alert audio, and log options.",
+  "acceptanceCriteria": [
+    "config/default_settings.yaml contains defaults for camera, detection thresholds, alerts, and logging",
+    "settings/settings_service.py parses and validates settings using Pydantic or dataclasses",
+    "Invalid settings values are caught and safe fallbacks are used",
+    "Unit tests verify loading, modification, and persistence of configuration"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create default settings YAML file",
+      "details": "Create config/default_settings.yaml specifying camera.index, detection.closed_threshold (0.75), detection.closure_seconds (1.5), detection.sensitivity, alerts.enabled (true), alerts.stage1_sound, alerts.stage2_voice, alerts.stage3_alarm.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement SettingsService class",
+      "details": "Create settings/settings_service.py with methods load_settings(), update_settings(), get_settings(), and persist_settings().",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Add settings validation",
+      "details": "Ensure closed_threshold is within [0.0, 1.0], closure_seconds >= 0.5, and camera index is a non-negative integer.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for SettingsService",
+      "details": "Create tests/test_settings.py to test loading defaults, overriding with custom values, and rejecting invalid configs.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-1"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Keep file size under 200 lines adhering to AGENTS.md guidelines.",
+    "Persist user adjustments to a local user_settings.json without modifying default_settings.yaml."
+  ]
+}

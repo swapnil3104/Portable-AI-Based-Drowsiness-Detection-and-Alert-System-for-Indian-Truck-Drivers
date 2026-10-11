@@ -1,0 +1,45 @@
+{
+  "id": "TASK-11",
+  "title": "3-stage alert transition manager with cooldown logic",
+  "category": "functional",
+  "description": "Implement alerts/alert_manager.py to coordinate visual and auditory alert dispatching across Stage 1, Stage 2, and Stage 3, enforcing cooldown intervals to prevent rapid repetitive alarms.",
+  "acceptanceCriteria": [
+    "Coordinates alert escalation from Stage 1 (Initial) -> Stage 2 (High) -> Stage 3 (Critical)",
+    "Enforces minimum interval (cooldown) between repeated voice or tone emissions",
+    "Provides preview alert method to test any stage without triggering actual drowsiness",
+    "Logs every alert escalation and de-escalation to EventLogger",
+    "Unit tests verify cooldown throttling and preview functionality"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create AlertManager class",
+      "details": "Create alerts/alert_manager.py with AlertManager receiving state updates and managing active_stage, last_alert_time, and cooldown_seconds.",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement handle_state_change method",
+      "details": "When new state differs from current: trigger corresponding alert action, log event via EventLogger, and update stage status.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement preview_alert method",
+      "details": "Implement preview_alert(stage: int) to simulate the audio-visual alert of Stage 1, 2, or 3 for 3 seconds.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for AlertManager",
+      "details": "Create tests/test_alert_manager.py verifying that state updates trigger alerts, cooldown throttles excessive repeated calls, and preview functions work.",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-10", "TASK-3"],
+  "estimatedComplexity": "low",
+  "technicalNotes": [
+    "Prevent overlapping audio streams by queuing or canceling ongoing audio when a higher priority stage triggers.",
+    "Keep alert manager decoupled from specific audio drivers."
+  ]
+}

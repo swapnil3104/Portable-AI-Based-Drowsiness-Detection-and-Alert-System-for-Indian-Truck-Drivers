@@ -1,0 +1,44 @@
+{
+  "id": "TASK-7",
+  "title": "CNN eye-state classifier inference wrapper",
+  "category": "functional",
+  "description": "Implement detection/model_runner.py to load and run inference with trained binary eye-state CNN models (.keras, .h5, or mock fallback) returning p_closed probabilities and latency metrics.",
+  "acceptanceCriteria": [
+    "Loads Keras/TFLite model from specified path under models/ or falls back to a deterministic mock predictor when model is missing",
+    "Performs batch inference on normalized eye crops and returns probability p_closed in [0.0, 1.0]",
+    "Measures and reports per-inference latency in milliseconds",
+    "Unit tests verify inference output formats, probabilities bounds, and mock fallback behavior"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "description": "Create ModelRunner class",
+      "details": "Create detection/model_runner.py with ModelRunner supporting load_model(model_path) and predict_batch(crops).",
+      "pass": false
+    },
+    {
+      "step": 2,
+      "description": "Implement robust model loader with mock fallback",
+      "details": "If model file exists, load with tf.keras.models.load_model; if not found or in test mode, initialize a lightweight mock model returning predictable probabilities.",
+      "pass": false
+    },
+    {
+      "step": 3,
+      "description": "Implement inference timing and metrics",
+      "details": "Measure inference execution time using time.perf_counter() and expose average latency.",
+      "pass": false
+    },
+    {
+      "step": 4,
+      "description": "Write unit tests for ModelRunner",
+      "details": "Create tests/test_model_runner.py testing prediction outputs on dummy numpy arrays (batch_size, 96, 96, 3).",
+      "pass": false
+    }
+  ],
+  "dependencies": ["TASK-1", "TASK-6"],
+  "estimatedComplexity": "medium",
+  "technicalNotes": [
+    "Support CPU-only inference first without requiring GPU acceleration.",
+    "Ensure predictor is thread-safe for background worker invocation."
+  ]
+}
