@@ -37,7 +37,8 @@
 - [Three-Stage Escalating Alert System](#-three-stage-escalating-alert-system)
 - [End-to-End System Architecture](#-end-to-end-system-architecture)
 - [AI Model Benchmark & Evaluation](#-ai-model-benchmark--evaluation)
-- [Raspberry Pi Edge Hardware Specification](#-raspberry-pi-edge-hardware-specification)
+- [Next Phase: Embedded Hardware Prototype & Further Development](#-next-phase-embedded-hardware-prototype--further-development)
+- [Raspberry Pi Edge Hardware Specification & Circuit Diagram](#-raspberry-pi-edge-hardware-specification--circuit-diagram)
 - [Quickstart & Installation](#-quickstart--installation)
 - [Interactive Dashboard & API Telemetry](#-interactive-dashboard--api-telemetry)
 - [Running the Test Suite](#-running-the-test-suite)
@@ -248,49 +249,129 @@ Six deep learning architectures were trained, evaluated, and stress-tested on re
 
 ---
 
-## 🍓 Raspberry Pi Edge Hardware Specification
+## 🛠️ Next Phase: Embedded Hardware Prototype & Further Development
 
-The **DrishtiDrive AI — Edge Edition** packages the software pipeline into a standalone, dashboard-mounted plug-and-play enclosure:
+With the software and AI model benchmarking successfully validated (**Phase 1: Software Edition complete with 94 passing tests**), the project advances into **Phase 2 & Phase 3: Dedicated Embedded Hardware Prototyping (DrishtiDrive AI — Edge Edition)**.
+
+This phase transforms the computer-vision pipeline into a physical, standalone, windshield-mounted IoT automotive safety device designed specifically for the extreme operating realities of Indian commercial truck cabins.
+
+<div align="center">
+  <img src="reports/screenshots/hardware_prototype.jpg" alt="DrishtiDrive AI Embedded Hardware Prototype, Components, and Circuit Diagram" width="960" style="border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.4);" />
+  <p><em>Figure 4: DrishtiDrive AI Edge Edition — physical dashcam prototype form factor (left), modular hardware bill of materials (top right), and complete GPIO circuit wiring schematic (bottom right).</em></p>
+</div>
+
+---
+
+### 1. Prototype Enclosure & Ergonomic In-Cabin Design
+As designed in the physical blueprint:
+- **Windshield Suction Mount:** Securely adheres to commercial truck windscreens, placing the lens at direct eye level (~50–80 cm from the driver) without obstructing road visibility.
+- **Compact 3D-Printed ABS Enclosure:** Custom heat-resistant housing with passive convection ventilation and active micro-fan mounting to survive ambient cabin heat (>50°C in Indian summer conditions).
+- **Integrated Wide-Angle Camera:** 8MP sensor with high dynamic range (HDR) and optional infrared (IR) night vision to track driver eyes even in pitch-black nocturnal conditions.
+- **Physical Tri-Color LED Indicator Bar:** Provides subtle peripheral visual cues (Green: Normal/Attentive, Yellow: Stage 1/2 Warning, Red: Stage 3 Emergency).
+- **High-Decibel Acoustic Speaker / Buzzer:** Direct forward-facing grille designed to pierce 75–85 dB truck diesel engine rumbling without requiring external cabin amplifiers.
+
+---
+
+### 2. Hardware Components Breakdown (from PRD & Blueprint)
+
+| Component | Specification | Technical Role in System |
+| :--- | :--- | :--- |
+| **Edge Compute Core** | **Raspberry Pi 4 (4GB / 8GB RAM)** | Autonomous local AI processing unit running headless Raspberry Pi OS (64-bit). Executes OpenCV face tracking and quantized CNN inference locally with zero cloud reliance. |
+| **Vision Sensor** | **Raspberry Pi Camera Module (8MP, Wide-Angle / NoIR)** | Connected via dedicated MIPI CSI ribbon cable for zero-latency DMA frame acquisition. Wide field of view ensures the driver's face remains localized regardless of driver height or seat position. |
+| **Auditory Alarm** | **5V Active Piezo Buzzer (85–90 dB)** | Driven via NPN transistor / direct GPIO to produce high-penetration audible alerts during Stage 1 warnings and Stage 3 emergency sirens. |
+| **Status LEDs** | **Tri-Color Diffused LEDs (Red, Yellow, Green)** | High-brightness 5mm indicators with 220Ω/330Ω current-limiting resistors providing non-distracting visual peripheral state feedback. |
+| **Acknowledge Button**| **Tactile Momentary Push Button** | Driver-accessible snooze / reset button connected to GPIO with software debouncing. Allows the driver to silence false alarms or acknowledge rest warnings without taking eyes off the road. |
+| **Storage & OS** | **128GB High-Endurance SanDisk MicroSD** | Holds OS image, lightweight TFLite/ONNX models, offline audio catalog (EN/HI/MR), and encrypted rolling telemetry event logs. |
+| **Power Conversion** | **5V 3A USB-C Power Adapter / Buck Module** | Regulates fluctuating vehicle battery voltage (12V in small trucks, 24V in heavy haulers) down to a stable 5V 3A supply via the auxiliary cigarette lighter port. |
+| **Protective Shell** | **Custom 3D-Printed High-Temp Case (ABS/PETG)** | Heat-deflecting enclosure shielding internal electronics against windshield solar radiation and cabin vibrations. |
+
+---
+
+### 3. Circuit Wiring & GPIO Pinout Mapping
+
+The circuit diagram illustrates the exact electrical wiring between the Raspberry Pi 4 and the peripheral alert actuators:
 
 ```text
- ┌────────────────────────────────────────────────────────────────────────┐
- │           DRISHTIDRIVE AI — EDGE EDITION HARDWARE BLUEPRINT            │
- └────────────────────────────────────────────────────────────────────────┘
+ ┌─────────────────────────────────────────────────────────────────────────────┐
+ │                      RASPBERRY PI 4 GPIO CIRCUIT SCHEMATIC                  │
+ └─────────────────────────────────────────────────────────────────────────────┘
 
-  [ 12V / 24V Truck Battery / Cigarette Socket ]
-                     │
-                     ▼
-  [ Isolated Buck Converter (12V/24V ➔ 5V 3A USB-C PD) ]
-                     │
-                     ▼
-  ┌────────────────────────────────────────────────────────┐
-  │                 Raspberry Pi 4B / 5                    │
-  │                                                        │
-  │  [ CSI / USB ] ──▶ Wide-Angle IR Camera (Cabin Focus)  │
-  │  [ GPIO 18   ] ──▶ 85–90 dB Active Piezo Buzzer        │
-  │  [ GPIO 12/13] ──▶ MAX98357A I2S DAC ──▶ 3W Speaker   │
-  │  [ GPIO 23-25] ──▶ High-Intensity Tri-Color RGB LED   │
-  │  [ GPIO 27   ] ──▶ Driver Snooze / Acknowledge Button │
-  │  [ MicroSD   ] ──▶ Headless OS + TFLite / ONNX Runtime │
-  └────────────────────────────────────────────────────────┘
+    [ Raspberry Pi 4 ]
+    ├── MIPI CSI Port ══════════════════════════════▶ [ 8MP Camera Module ]
+    ├── GPIO 18 (Pin 12) ──[ 1kΩ ]──[ NPN Transistor ]▶ [ 5V Active Buzzer ]
+    ├── GPIO 17 (Pin 11) ──[ 330Ω Resistor ]────────▶ [ Red LED (Critical) ]
+    ├── GPIO 27 (Pin 13) ──[ 330Ω Resistor ]────────▶ [ Yellow LED (Warning) ]
+    ├── GPIO 22 (Pin 15) ──[ 330Ω Resistor ]────────▶ [ Green LED (Normal) ]
+    ├── GPIO 23 (Pin 16) ──[ Pull-Up Input ]────────▶ [ Push Button (Snooze) ]
+    ├── GND (Pin 6/9/14/20/25/30/34/39) ────────────▶ Common Ground Rail
+    └── USB-C Power Port ◀─────────────────────────── [ 5V 3A Buck Converter ]
+                                                            ▲
+                                                            │ (12V/24V Input)
+                                                [ Vehicle Cigarette Socket ]
 ```
+
+#### Detailed Pin Connection Table:
+
+| Peripheral | RPi Interface / Pin | GPIO Number | Function / Behavior |
+| :--- | :--- | :---: | :--- |
+| **Camera Module** | 15-pin MIPI CSI | *Direct CSI* | 30 FPS raw camera stream to OpenCV VideoCapture |
+| **5V Active Buzzer** | Physical Pin 12 | **GPIO 18** (PWM) | Generates 880 Hz beep (Stage 1) and pulsed 1200 Hz siren (Stage 3) |
+| **Red Indicator** | Physical Pin 11 | **GPIO 17** | Latches HIGH during Stage 3 Critical Alarm (>3.0s closure) |
+| **Yellow Indicator** | Physical Pin 13 | **GPIO 27** | Latches HIGH during Stage 1 (>0.8s) & Stage 2 (>1.8s) Drowsiness Warning |
+| **Green Indicator** | Physical Pin 15 | **GPIO 22** | Solid HIGH when driver eyes are open and system is actively monitoring |
+| **Push Button** | Physical Pin 16 | **GPIO 23** | Active-LOW momentary switch to snooze alerts or initiate hardware self-test |
+| **System Ground** | Physical Pin 6, 9, 14, 20 | **GND** | Return path for all LEDs, buzzer transistor, and button |
+| **Isolated Power** | USB-C Type Connector | **VBUS (5V)** | Pure DC 5V 3A isolated from truck electrical spikes |
+
+> [!WARNING]
+> **Automotive Electrical Isolation Safety Rule (PRD §3.2):**  
+> DrishtiDrive AI Edge is designed strictly as an **independent retrofit**. It draws power exclusively from the vehicle's standard auxiliary 12V/24V cigarette lighter socket through a certified step-down buck converter. **It never taps into the vehicle CAN bus, ECU, braking hydraulics, or steering column.**
+
+---
+
+### 4. Implementation Roadmap & Development Milestones
+
+```mermaid
+gantt
+    title DrishtiDrive AI Development Roadmap
+    dateFormat  YYYY-MM-DD
+    section Phase 1: Software Edition
+    Dataset 2 Training & Model Benchmark       :done, p1_1, 2026-10-01, 2026-10-08
+    FastAPI + React 19 Dashboard               :done, p1_2, 2026-10-08, 2026-10-11
+    3-Stage Alert State Machine & 94 Tests     :done, p1_3, 2026-10-11, 2026-10-12
+    section Phase 2: Edge Optimization
+    Model Export to TFLite (INT8 Quantization) :active, p2_1, 2026-10-13, 2026-10-20
+    ONNX Runtime + ARM NEON Acceleration       :p2_2, 2026-10-18, 2026-10-25
+    section Phase 3: Hardware Prototype
+    Breadboard Circuit Assembly (GPIO Pinout)  :p3_1, 2026-10-25, 2026-11-02
+    Custom PCB Shield & Passive Thermal Sink   :p3_2, 2026-11-01, 2026-11-10
+    3D-Printed ABS Dashcam Enclosure           :p3_3, 2026-11-08, 2026-11-16
+    Headless systemd Daemon & Boot Automation  :p3_4, 2026-11-12, 2026-11-20
+    section Phase 4: Fleet & Road Trials
+    Truck Cabin Vibration & Thermal Stress     :p4_1, 2026-11-20, 2026-12-05
+    Highway Night Driving Road Trials (NH44)   :p4_2, 2026-12-01, 2026-12-20
+    Driver Usability & Alert Feedback Tuning   :p4_3, 2026-12-15, 2026-12-30
+```
+
+---
+
+## 🍓 Raspberry Pi Edge Hardware Specification & Circuit Diagram
+
+The estimated Bill of Materials (BOM) for fabricating the Edge Edition prototype packages affordability into the retrofit design:
 
 ### Bill of Materials (BOM) & Estimated Retrofit Cost:
 
 | Component | Specification | Estimated Cost (INR) | Role |
 | :--- | :--- | :---: | :--- |
-| **Single Board Computer** | Raspberry Pi 4B (2GB/4GB) or Pi 5 | ₹3,200 – ₹4,500 | Autonomous on-device AI inference |
-| **Camera Module** | RPi Camera 3 Wide / USB IR Night Vision | ₹800 – ₹1,400 | Face & eye keypoint capture in dark cabins |
-| **Power Converter** | 12V/24V to 5V 3A Isolated Buck Module | ₹250 – ₹400 | Safe power from truck cigarette lighter socket |
-| **Audio Alert System** | Active 5V Buzzer + 3W 4Ω Speaker (I2S DAC) | ₹200 – ₹350 | Penetrates 75–85 dB truck cabin engine noise |
-| **Visual Indicator** | High-Brightness Diffused RGB LED / Bar | ₹50 – ₹100 | Peripheral visual warning on dashboard |
-| **Tactile Button** | Panel-mount momentary push button | ₹30 – ₹50 | Driver alert cancellation / snooze input |
-| **Enclosure** | High-temp ABS 3D printed dashboard mount | ₹200 – ₹300 | Heat-resistant cabin mounting |
-| **Total Estimated Cost** | **Retrofit Package** | **~ ₹4,730 – ₹7,100** | **< 5% of commercial ADAS retrofits!** |
-
-> [!WARNING]
-> **Electrical Isolation Requirement:**  
-> DrishtiDrive AI Edge is strictly powered via the auxiliary cigarette lighter or standard 5V USB ports. **It does not tap into the truck's CAN bus, ECU, braking hydraulics, or steering column.**
+| **Single Board Computer** | Raspberry Pi 4B (4GB) or Pi 5 | ₹3,500 – ₹4,500 | Autonomous on-device AI inference engine |
+| **Camera Module** | RPi Camera Module (8MP Wide-Angle) | ₹1,000 – ₹1,500 | Face & eye keypoint capture via CSI ribbon cable |
+| **Power Converter** | 12V/24V to 5V 3A Isolated Buck Module (USB-C) | ₹250 – ₹400 | Safe power from truck cigarette lighter socket |
+| **Audio Alert System** | Active 5V Buzzer + 3W Cabin Speaker (I2S DAC) | ₹200 – ₹350 | Penetrates 75–85 dB truck cabin engine noise |
+| **Visual Indicators** | High-Brightness Diffused LEDs (Red, Yellow, Green) | ₹50 – ₹100 | Multi-stage peripheral dashboard alert bar |
+| **Tactile Button** | Momentary panel-mount push button (GPIO 23) | ₹30 – ₹50 | Driver alert cancellation / snooze input |
+| **MicroSD Card** | 128GB SanDisk High-Endurance Class 10 | ₹700 – ₹900 | OS, models, audio assets, and telemetry logs |
+| **Enclosure** | High-temperature ABS 3D-printed dashcam case | ₹250 – ₹350 | Heat-resistant cabin mounting with suction cup |
+| **Total Estimated Cost** | **Complete Hardware Prototype Package** | **~ ₹5,980 – ₹7,650** | **< 5% the cost of factory ADAS systems!** |
 
 ---
 
