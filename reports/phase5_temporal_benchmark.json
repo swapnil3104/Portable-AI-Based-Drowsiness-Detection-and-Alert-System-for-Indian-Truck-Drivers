@@ -1,0 +1,57 @@
+{
+  "attentive_driver_normal": {
+    "sequence_name": "attentive_driver_normal",
+    "total_steps": 360,
+    "duration_sec": 11.97,
+    "detected_blinks": 4,
+    "max_alert_stage": 0,
+    "alert_events_count": 0,
+    "transitions_count": 0,
+    "passed": true,
+    "notes": ""
+  },
+  "sustained_closure_microsleep": {
+    "sequence_name": "sustained_closure_microsleep",
+    "total_steps": 189,
+    "duration_sec": 6.27,
+    "detected_blinks": 0,
+    "max_alert_stage": 3,
+    "alert_events_count": 4,
+    "transitions_count": 5,
+    "passed": true,
+    "notes": ""
+  },
+  "repeated_micro_closures": {
+    "sequence_name": "repeated_micro_closures",
+    "total_steps": 261,
+    "duration_sec": 8.67,
+    "detected_blinks": 0,
+    "max_alert_stage": 2,
+    "alert_events_count": 6,
+    "transitions_count": 9,
+    "passed": true,
+    "notes": ""
+  },
+  "sensor_dropout_safety": {
+    "sequence_name": "sensor_dropout_safety",
+    "total_steps": 165,
+    "duration_sec": 5.47,
+    "detected_blinks": 0,
+    "max_alert_stage": 0,
+    "alert_events_count": 0,
+    "transitions_count": 2,
+    "passed": true,
+    "notes": ""
+  },
+  "flicker_debouncing_immunity": {
+    "sequence_name": "flicker_debouncing_immunity",
+    "total_steps": 75,
+    "duration_sec": 2.47,
+    "detected_blinks": 0,
+    "max_alert_stage": 2,
+    "alert_events_count": 2,
+    "transitions_count": 2,
+    "passed": true,
+    "notes": ""
+  }
+}

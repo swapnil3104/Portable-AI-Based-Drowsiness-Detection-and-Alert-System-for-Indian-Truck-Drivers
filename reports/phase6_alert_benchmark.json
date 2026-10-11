@@ -1,0 +1,83 @@
+{
+  "benchmark_timestamp": 1791761452.8991191,
+  "stages_verified": {
+    "stage_1": {
+      "name": "Stage 1 — Early Warning",
+      "sound_file": "stage1_beep.wav",
+      "voice_message": "Please stay alert. Keep your eyes on the road.",
+      "visual_badge": "STAGE 1 - ATTENTION",
+      "visual_color_bgr": [
+        30,
+        180,
+        255
+      ]
+    },
+    "stage_2": {
+      "name": "Stage 2 — Drowsiness Warning",
+      "sound_file": "stage2_beep.wav",
+      "voice_message": "Warning! You may be getting drowsy. Please find a safe place to stop.",
+      "visual_badge": "STAGE 2 - WARNING",
+      "visual_color_bgr": [
+        0,
+        140,
+        255
+      ]
+    },
+    "stage_3": {
+      "name": "Stage 3 — Critical Safety Alert",
+      "sound_file": "stage3_alarm.wav",
+      "voice_message": "Danger! Pull over safely as soon as possible. Do not continue driving while drowsy.",
+      "visual_badge": "STAGE 3 - DANGER",
+      "visual_color_bgr": [
+        34,
+        34,
+        220
+      ]
+    }
+  },
+  "dispatch_latency_ms": {
+    "stage_1": 0.0395,
+    "stage_2": 0.0925,
+    "stage_3": 0.0817,
+    "average_dispatch_latency_ms": 0.0712,
+    "is_non_blocking": true
+  },
+  "localization_verified": {
+    "en": {
+      "stage1": "Please stay alert. Keep your eyes on the road.",
+      "stage2": "Warning! You may be getting drowsy. Please find a safe place to stop.",
+      "stage3": "Danger! Pull over safely as soon as possible. Do not continue driving while drowsy."
+    },
+    "hi": {
+      "stage1": "कृपया सतर्क रहें। अपनी आँखें सड़क पर रखें।",
+      "stage2": "चेतावनी! आपको नींद आ रही हो सकती है। कृपया रुकने के लिए सुरक्षित स्थान खोजें।",
+      "stage3": "खतरा! यथाशीघ्र सुरक्षित रूप से गाड़ी रोकें। झपकी की स्थिति में गाड़ी न चलाएं।"
+    },
+    "mr": {
+      "stage1": "कृपया सावध रहा. आपले लक्ष रस्त्यावर ठेवा.",
+      "stage2": "इशारा! तुम्हाला झोप येत असावी. कृपया थांबण्यासाठी सुरक्षित जागा शोधा.",
+      "stage3": "धोका! लवकरात लवकर सुरक्षितपणे गाडी बाजूला घ्या. झोपेत असताना गाडी चालवू नका."
+    }
+  },
+  "resilience_verified": {
+    "survives_missing_audio_hardware": true,
+    "reported_device_error": true
+  },
+  "assets_verified": {
+    "stage_1_tone": {
+      "path": "E:\\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\\backend\\assets\\stage1_beep.wav",
+      "exists": true,
+      "size_bytes": 22094
+    },
+    "stage_2_tone": {
+      "path": "E:\\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\\backend\\assets\\stage2_beep.wav",
+      "exists": true,
+      "size_bytes": 33560
+    },
+    "stage_3_tone": {
+      "path": "E:\\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\\backend\\assets\\stage3_alarm.wav",
+      "exists": true,
+      "size_bytes": 56492
+    }
+  }
+}

@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Python testing & coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Node & Frontend dependencies
+node_modules/
+frontend/node_modules/
+frontend/.cache/
+frontend/test-results/
+frontend/playwright-report/
+test-results/
+playwright-report/
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# IDE & OS system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Agent & IDE internal session metadata
+.agent/
+.tempmediaStorage/
+
+# Datasets (Keep repo lightweight; see docs/dataset_guide.md for instructions)
+data/
+dataset/
+datasets/
+
+# Heavy / Non-essential Checkpoints (>25MB) & Intermediate training epochs
+*_checkpoint.pt
+backend/models/*_checkpoint.pt
+backend/models/resnet50*
+resnet50*
+*.h5
+*.keras
+*.tflite
+*.onnx
+
+# Application runtime logs
+*.log
+backend/logs/*.jsonl
+logs/*.jsonl

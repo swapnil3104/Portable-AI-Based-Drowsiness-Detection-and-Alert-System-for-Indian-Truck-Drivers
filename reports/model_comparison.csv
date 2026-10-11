@@ -1,0 +1,6 @@
+model_name,canonical_name,test_accuracy,macro_precision,macro_recall,macro_f1,closed_eye_recall,open_eye_recall,false_positives,false_negatives,inference_latency_ms,model_size_mb,total_parameters,trainable_parameters,checkpoint_path
+Custom CNN,custom_cnn,67.17,67.25,67.17,67.13,70.67,63.67,109,88,1.89,1.19,102082,102082,E:\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\backend\models\custom_cnn_best.pt
+Depthwise-Separable CNN,depthwise_cnn,72.0,72.05,72.0,71.98,69.67,74.33,77,91,1.88,0.38,29522,29522,E:\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\backend\models\depthwise_cnn_best.pt
+MobileNetV2,mobilenetv2,71.83,71.85,71.83,71.83,73.0,70.67,88,81,9.36,9.66,2305986,82114,E:\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\backend\models\mobilenetv2_best.pt
+EfficientNetB0,efficientnetb0,73.83,74.49,73.83,73.66,65.67,82.0,54,103,13.02,16.52,4089662,82114,E:\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\backend\models\efficientnetb0_best.pt
+ResNet50,resnet50,71.83,72.07,71.83,71.76,66.67,77.0,69,100,25.47,91.48,23639298,131266,E:\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\backend\models\resnet50_best.pt

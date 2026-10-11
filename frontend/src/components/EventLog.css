@@ -1,0 +1,123 @@
+.event-log-card {
+  padding: 18px 20px;
+}
+
+.log-icon-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1877f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-clear-log {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.btn-clear-log:hover {
+  background: #f1f5f9;
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+.log-entries-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 195px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.log-entries-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.log-entries-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.log-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.log-time {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.76rem;
+  min-width: 58px;
+}
+
+.log-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.log-indicator.success {
+  color: #10b981;
+}
+
+.log-indicator.alert {
+  color: #f59e0b;
+}
+
+.log-indicator.critical {
+  color: #ef4444;
+}
+
+.log-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.log-desc-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.log-stage-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.log-stage-tag.stage-1 { background: #fef9c3; color: #854d0e; }
+.log-stage-tag.stage-2 { background: #ffedd5; color: #9a3412; }
+.log-stage-tag.stage-3 { background: #fee2e2; color: #991b1b; }
+
+.log-desc {
+  color: #1e293b;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.log-measurements {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+

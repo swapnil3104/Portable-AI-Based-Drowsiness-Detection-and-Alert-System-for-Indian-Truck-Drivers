@@ -1,0 +1,2 @@
+# DrishtiDrive AI Root Requirements
+-r backend/requirements.txt

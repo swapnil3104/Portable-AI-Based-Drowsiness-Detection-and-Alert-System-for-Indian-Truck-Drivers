@@ -1,0 +1,130 @@
+.driver-metrics-card {
+  padding: 18px 20px;
+}
+
+.metrics-icon-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1877f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-name-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metric-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.metric-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.metric-value.green { color: #10b981; }
+.metric-value.blue { color: #0284c7; }
+.metric-value.amber { color: #f59e0b; }
+.metric-value.purple { color: #8b5cf6; }
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.progress-fill.green { background: #10b981; }
+.progress-fill.blue { background: #0284c7; }
+.progress-fill.amber { background: #f59e0b; }
+.progress-fill.purple { background: #8b5cf6; }
+
+.metric-val-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eye-state-badge {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.eye-state-badge.state-open {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.eye-state-badge.state-closed {
+  background: #dc2626;
+  color: #ffffff;
+  border: 1px solid #b91c1c;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  animation: pulse-closed-tag 0.75s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-closed-tag {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+.eye-state-badge.state-uncertain {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.metric-value.red {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+.progress-fill.red {
+  background: #dc2626;
+}
+
+

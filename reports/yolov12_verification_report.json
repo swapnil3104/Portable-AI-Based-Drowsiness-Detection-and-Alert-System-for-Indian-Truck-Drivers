@@ -1,0 +1,34 @@
+{
+  "verification": {
+    "ultralytics_version": "8.4.175",
+    "torch_version": "2.14.1+cpu",
+    "weights_file": "yolo12n.pt",
+    "weights_exist": true,
+    "yolov12_tasks_supported": [
+      "detect"
+    ],
+    "yolov12_pose_available": false,
+    "dataset2_classes": [
+      "awake",
+      "drowsy"
+    ],
+    "dataset2_annotation_type": "2D Bounding Boxes (class_id, x, y, w, h)",
+    "dataset2_has_landmarks": false,
+    "license_ultralytics": "AGPL-3.0 / Enterprise",
+    "license_dataset2": "CC BY 4.0",
+    "blockers": [
+      "BLOCKER-01: Dataset 2 does not contain facial landmark annotations (only 2D bounding boxes for awake/drowsy).",
+      "BLOCKER-02: Ultralytics YOLOv12 release only supports object detection ('detect') and lacks facial landmark/pose heads ('yolo12n-pose' does not exist)."
+    ],
+    "recommendation": "Use YOLO for bounding-box driver face/drowsiness detection; use dedicated facial landmark solution (e.g. MediaPipe / OpenCV DLib) or CNN eye-state classifiers for pupil/eyelid state."
+  },
+  "benchmark": {
+    "model_name": "YOLOv12n (Face & Drowsiness Detection Pipeline)",
+    "weights_path": "yolo12n.pt",
+    "input_resolution": "640x640",
+    "parameter_count": 2603056,
+    "model_size_mb": 5.34,
+    "cpu_latency_ms": 53.82,
+    "task": "detect"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "dataset_path": "E:\\Portable-AI-Based-Drowsiness-Detection-and-Alert-System-for-Indian-Truck-Drivers\\data\\eye_state",
+  "total_files": 4000,
+  "valid_images": 4000,
+  "corrupted_images": [],
+  "duplicate_count": 0,
+  "classes": {
+    "closed": 2000,
+    "open": 2000
+  },
+  "splits": {
+    "val": {
+      "closed": 300,
+      "open": 300
+    },
+    "train": {
+      "closed": 1400,
+      "open": 1400
+    },
+    "test": {
+      "closed": 300,
+      "open": 300
+    }
+  },
+  "dimensions": {
+    "min_width": 60,
+    "max_width": 180,
+    "min_height": 60,
+    "max_height": 180,
+    "mean_width": 107.31,
+    "mean_height": 107.31
+  }
+}
